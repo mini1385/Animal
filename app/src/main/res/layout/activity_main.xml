@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/billabong"
+                android:gravity="center"
+                android:text="With Animal"
+                android:textColor="#FFFFFFFF"
+                android:textSize="45sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_nav"
+            android:layout_below="@id/title"
+            android:background="@color/colorAccent">
+        </RelativeLayout>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_above="@id/ad"
+            android:background="@drawable/bottom_bg"
+            app:itemIconSize="24dp"
+            app:itemIconTint="@drawable/bottom_selector_color"
+            app:itemTextColor="@drawable/bottom_selector_color"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_navi">
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/ad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-2294150655496670/7882206013"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
+
+

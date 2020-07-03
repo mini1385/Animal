@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_home"
+        android:title="홈"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_gray_24dp"/>
+
+    <item android:id="@+id/menu_photo"
+        android:title="사진"
+        android:enabled="true"
+        android:icon="@drawable/ic_insert_photo_gray_24dp"/>
+
+    <item android:id="@+id/menu_calender"
+        android:title="일정"
+        android:enabled="true"
+        android:icon="@drawable/ic_date_range_gray_24dp"/>
+
+    <item android:id="@+id/menu_hospital"
+        android:title="병원"
+        android:enabled="true"
+        android:icon="@drawable/ic_local_hospital_gray_24dp"/>
+
+    <item android:id="@+id/menu_shop"
+        android:title="펫샵"
+        android:enabled="true"
+        android:icon="@drawable/ic_shopping_cart_gray_24dp"/>
+
+</menu>
