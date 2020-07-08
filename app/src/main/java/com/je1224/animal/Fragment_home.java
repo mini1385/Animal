@@ -16,11 +16,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubeThumbnailLoader;
+import com.google.android.youtube.player.YouTubeThumbnailView;
+
+import java.util.ArrayList;
+
 
 public class Fragment_home extends Fragment {
 
     Context context;
     RecyclerView recyclerView1,recyclerView2,recyclerView3;
+    ArrayList<YouTubeThumbnailView> items1,items2,items3;
 
     @Nullable
     @Override
