@@ -49,7 +49,7 @@
             android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_above="@id/ad"
+            android:layout_alignParentBottom="true"
             android:background="@drawable/bottom_bg"
             app:itemIconSize="24dp"
             app:itemIconTint="@drawable/bottom_selector_color"
@@ -58,14 +58,14 @@
             app:menu="@menu/bottom_navi">
         </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/ad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-2294150655496670/7882206013"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"/>
+<!--        <com.google.android.gms.ads.AdView-->
+<!--            android:id="@+id/ad"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            ads:adSize="BANNER"-->
+<!--            ads:adUnitId="ca-app-pub-2294150655496670/7882206013"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_centerHorizontal="true"/>-->
 
     </RelativeLayout>
 

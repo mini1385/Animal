@@ -56,7 +56,8 @@
         android:layout_marginTop="32dp"
         android:onClick="logout"
         android:background="@drawable/btn_shape"
-        android:fontFamily="@font/cookierun" />
+        android:fontFamily="@font/cookierun"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/btn2"
@@ -69,6 +70,7 @@
         android:layout_marginTop="16dp"
         android:onClick="dataDelete"
         android:background="@drawable/btn_shape"
-        android:fontFamily="@font/cookierun"/>
+        android:fontFamily="@font/cookierun"
+        android:visibility="invisible"/>
 
 </RelativeLayout>

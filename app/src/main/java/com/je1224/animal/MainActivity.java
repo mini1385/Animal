@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         bnv=findViewById(R.id.bottom_nav);
         tv=findViewById(R.id.tv);
-        adView=findViewById(R.id.ad);
+//        adView=findViewById(R.id.ad);
 
         // 카카오 해시값
         String keyHash=getKeyHash(this);
@@ -106,8 +106,8 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("");
 
-        AdRequest adRequest=new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+//        AdRequest adRequest=new AdRequest.Builder().build();
+//        adView.loadAd(adRequest);
     }
 
 
@@ -162,11 +162,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "search", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_my:
-                Intent intent=new Intent(MainActivity.this,MyPageActivity.class);
-                startActivity(intent);
+                Intent intent1=new Intent(MainActivity.this,MyPageActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.menu_pet:
-                Toast.makeText(this, "pet", Toast.LENGTH_SHORT).show();
+                Intent intent2=new Intent(MainActivity.this,MyPetActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.menu_review:
                 Toast.makeText(this, "review", Toast.LENGTH_SHORT).show();

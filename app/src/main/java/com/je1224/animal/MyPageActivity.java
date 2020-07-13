@@ -58,9 +58,10 @@ public class MyPageActivity extends AppCompatActivity {
             @Override
             public void onSuccess(MeV2Response result) {
                 UserAccount userAccount=result.getKakaoAccount();
-                if(userAccount==null) {
-                    btn1.setVisibility(View.INVISIBLE);
-                    btn2.setVisibility(View.INVISIBLE);
+
+                if(userAccount!=null) {
+                    btn1.setVisibility(View.VISIBLE);
+                    btn2.setVisibility(View.VISIBLE);
                 }
 
                 tv.setText(userAccount.getEmail());

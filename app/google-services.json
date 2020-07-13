@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "252084790908",
+    "firebase_url": "https://withanimal-1090e.firebaseio.com",
+    "project_id": "withanimal-1090e",
+    "storage_bucket": "withanimal-1090e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252084790908:android:3153656f3b5536d343cbf9",
+        "android_client_info": {
+          "package_name": "com.je1224.animal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252084790908-6jas4q4qoj1i6plrjua13k7uiqvdebh7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcCVGy4H7cVZQkPYiInMM38aURQjRpqDA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252084790908-6jas4q4qoj1i6plrjua13k7uiqvdebh7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
