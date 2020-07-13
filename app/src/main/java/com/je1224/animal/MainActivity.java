@@ -9,7 +9,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
+import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +29,12 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import static com.kakao.util.helper.Utility.getKeyHash;
+import static com.kakao.util.helper.Utility.getPackageInfo;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -39,7 +54,11 @@ public class MainActivity extends AppCompatActivity {
 
         bnv=findViewById(R.id.bottom_nav);
         tv=findViewById(R.id.tv);
-        adView=findViewById(R.id.ad);
+//        adView=findViewById(R.id.ad);
+
+        // 카카오 해시값
+        String keyHash=getKeyHash(this);
+        Log.i("TAG",keyHash);
 
         fragmentManager=getSupportFragmentManager();
 
@@ -87,8 +106,8 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("");
 
-        AdRequest adRequest=new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+//        AdRequest adRequest=new AdRequest.Builder().build();
+//        adView.loadAd(adRequest);
     }
 
 
@@ -143,10 +162,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "search", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_my:
-                Toast.makeText(this, "my", Toast.LENGTH_SHORT).show();
+                Intent intent1=new Intent(MainActivity.this,MyPageActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.menu_pet:
-                Toast.makeText(this, "pet", Toast.LENGTH_SHORT).show();
+                Intent intent2=new Intent(MainActivity.this,MyPetActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.menu_review:
                 Toast.makeText(this, "review", Toast.LENGTH_SHORT).show();
@@ -155,6 +176,21 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public static String getKeyHash(final Context context) {
+        PackageInfo packageInfo = getPackageInfo(context, PackageManager.GET_SIGNATURES);
+        if (packageInfo == null)
+            return null;
 
+        for (Signature signature : packageInfo.signatures) {
+            try {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                return Base64.encodeToString(md.digest(), Base64.NO_WRAP);
+            } catch (NoSuchAlgorithmException e) {
+                Log.w("TAG", "Unable to get MessageDigest. signature=" + signature, e);
+            }
+        }
+        return null;
+    }
 
 }

@@ -22,8 +22,9 @@ public class IntroActivity extends AppCompatActivity {
     Handler handler=new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
-            Intent intent=new Intent(IntroActivity.this,MainActivity.class);
+            Intent intent=new Intent(IntroActivity.this,LoginActivity.class);
             startActivity(intent);
+            overridePendingTransition(0, 2);
             finish();
         }
     };
