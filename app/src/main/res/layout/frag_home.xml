@@ -46,7 +46,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="응급상황 대처법"
+        android:text="응급상황·통증신호"
         android:textSize="20sp"
         android:fontFamily="@font/cookierun"
         android:textColor="@color/colorPrimaryDark"

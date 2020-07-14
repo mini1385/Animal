@@ -2,14 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:layout_margin="16dp"
+    android:background="@drawable/home_rl_bg">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/cv"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="24dp"/>
+        android:layout_marginLeft="24dp"
+        android:src="@drawable/ic_account_circle_black_24dp"/>
 
     <TextView
         android:id="@+id/tv_name"
@@ -22,25 +25,45 @@
         android:textSize="24sp"/>
 
     <TextView
-        android:id="@+id/tv_s"
+        android:id="@+id/tv_ss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/cv"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@id/tv_name"
-        android:text="성별 : 수컷"
+        android:text="성별 : "
         android:textSize="16sp"/>
 
     <TextView
-        android:id="@+id/tv_birth"
+        android:id="@+id/tv_s"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tv_ss"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/tv_name"
+        android:text="수컷"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/tv_bb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/cv"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="4dp"
         android:layout_below="@id/tv_s"
-        android:text="생일 : 2017.07.21"
+        android:text="생일 : "
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/tv_birth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tv_bb"
+        android:layout_marginTop="4dp"
+        android:layout_below="@id/tv_s"
+        android:text="0000.00.00"
         android:textSize="16sp"/>
 
 

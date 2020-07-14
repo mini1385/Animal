@@ -10,4 +10,8 @@
         <item name="iconTint">@color/colorAccent</item>
     </style>
 
+    <style name="dialog_theme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/buttoncolor</item>
+    </style>
+
 </resources>
