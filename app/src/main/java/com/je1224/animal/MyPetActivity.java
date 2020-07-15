@@ -47,11 +47,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MyPetActivity extends AppCompatActivity {
 
     ListView lv;
-    String name,s,birth;
+    String name,gender,birth;
+    String loadName,loadGender,loadBirth,loadImg;
 
     CircleImageView cv;
-    TextView tvName, tvS, tvBirth;
+    TextView tvName, tvGender, tvBirth;
+
     RadioGroup rg;
+    RadioButton rb_b,rb_g;
     EditText etName, etBirth;
     ImageView iv;
 
@@ -63,7 +66,7 @@ public class MyPetActivity extends AppCompatActivity {
         lv=findViewById(R.id.lv);
         cv=findViewById(R.id.cv);
         tvName=findViewById(R.id.tv_name);
-        tvS=findViewById(R.id.tv_s);
+        tvGender=findViewById(R.id.tv_gender);
         tvBirth=findViewById(R.id.tv_birth);
 
         Toolbar tb=findViewById(R.id.toolbar);
@@ -78,6 +81,8 @@ public class MyPetActivity extends AppCompatActivity {
                 requestPermissions(permissions,100);
             }
         }
+
+
 
 
     }
@@ -111,6 +116,8 @@ public class MyPetActivity extends AppCompatActivity {
         builder.setView(v);
 
         rg=v.findViewById(R.id.rg);
+        rb_b=v.findViewById(R.id.rb_b);
+        rb_g=v.findViewById(R.id.rb_g);
         etName=v.findViewById(R.id.et_name);
         etBirth=v.findViewById(R.id.et_birth);
         iv=v.findViewById(R.id.iv);
@@ -118,8 +125,8 @@ public class MyPetActivity extends AppCompatActivity {
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton rb=findViewById(checkedId);
-                s=rb.getText().toString();
+                RadioButton rb=v.findViewById(checkedId);
+                gender=rb.getText().toString();
             }
         });
 
@@ -129,7 +136,9 @@ public class MyPetActivity extends AppCompatActivity {
                 name=etName.getText().toString();
                 birth=etBirth.getText().toString();
                 Upload();
-                //ImgUpload();
+                ImgUpload();
+
+
             }
         });
 
@@ -180,15 +189,18 @@ public class MyPetActivity extends AppCompatActivity {
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference ref=firebaseDatabase.getReference();
 
-        PetInfo petInfo=new PetInfo(name,birth);
+        Pet pet=new Pet(name,gender,birth);
         DatabaseReference petRef=ref.child("pets");
-        petRef.push().setValue(petInfo);
+        petRef.push().setValue(pet);
 
         petRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    PetInfo p=snapshot.getValue(PetInfo.class);
+                    Pet p=snapshot.getValue(Pet.class);
+                    loadName=p.petName;
+                    loadGender=p.petGender;
+                    loadBirth=p.petBirth;
 
                 }
             }
@@ -213,8 +225,15 @@ public class MyPetActivity extends AppCompatActivity {
         task.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(MyPetActivity.this, "업로드 성공", Toast.LENGTH_SHORT).show();
+                imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        loadImg=uri.toString();
+                    }
+                });
             }
         });
+
     }
+
 }

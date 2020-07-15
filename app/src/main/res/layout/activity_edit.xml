@@ -62,7 +62,7 @@
         android:fontFamily="@font/joongnalight"
         android:gravity="top"
         android:inputType="textMultiLine"
-        android:maxLines="3" />
+        android:maxLines="5" />
 
     <Button
         android:layout_width="match_parent"

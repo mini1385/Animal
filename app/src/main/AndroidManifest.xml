@@ -19,6 +19,7 @@
         <activity android:name=".MyPetActivity"></activity>
         <activity android:name=".MyPageActivity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".EditActivity" />
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan" />

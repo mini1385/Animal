@@ -25,7 +25,7 @@
         android:textSize="24sp"/>
 
     <TextView
-        android:id="@+id/tv_ss"
+        android:id="@+id/tv_gg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/cv"
@@ -36,10 +36,10 @@
         android:textSize="16sp"/>
 
     <TextView
-        android:id="@+id/tv_s"
+        android:id="@+id/tv_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tv_ss"
+        android:layout_toRightOf="@id/tv_gg"
         android:layout_marginTop="10dp"
         android:layout_below="@id/tv_name"
         android:text="수컷"
@@ -52,7 +52,7 @@
         android:layout_toRightOf="@id/cv"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="4dp"
-        android:layout_below="@id/tv_s"
+        android:layout_below="@id/tv_gender"
         android:text="생일 : "
         android:textSize="16sp"/>
 
@@ -62,9 +62,8 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/tv_bb"
         android:layout_marginTop="4dp"
-        android:layout_below="@id/tv_s"
+        android:layout_below="@id/tv_gender"
         android:text="0000.00.00"
         android:textSize="16sp"/>
-
 
 </RelativeLayout>

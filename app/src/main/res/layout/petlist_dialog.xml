@@ -32,7 +32,7 @@
         android:layout_below="@id/et_name"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatRadioButton
+        <RadioButton
             android:id="@+id/rb_b"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:checked="true"
             android:buttonTint="@color/colorPrimaryDark"/>
 
-        <androidx.appcompat.widget.AppCompatRadioButton
+        <RadioButton
             android:id="@+id/rb_g"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
