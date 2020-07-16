@@ -7,8 +7,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,6 +20,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -41,6 +44,7 @@ import com.google.firebase.storage.UploadTask;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -48,7 +52,11 @@ public class MyPetActivity extends AppCompatActivity {
 
     ListView lv;
     String name,gender,birth;
-    String loadName,loadGender,loadBirth,loadImg;
+    String loadName,loadGender,loadBirth;
+    Uri loadImg;
+    PetInfo[] INDEX_INFO;
+
+    TextView tvNoitem;
 
     CircleImageView cv;
     TextView tvName, tvGender, tvBirth;
@@ -68,6 +76,7 @@ public class MyPetActivity extends AppCompatActivity {
         tvName=findViewById(R.id.tv_name);
         tvGender=findViewById(R.id.tv_gender);
         tvBirth=findViewById(R.id.tv_birth);
+        tvNoitem=findViewById(R.id.tv_noitem);
 
         Toolbar tb=findViewById(R.id.toolbar);
         setSupportActionBar(tb);
@@ -81,9 +90,6 @@ public class MyPetActivity extends AppCompatActivity {
                 requestPermissions(permissions,100);
             }
         }
-
-
-
 
     }
 
@@ -122,6 +128,8 @@ public class MyPetActivity extends AppCompatActivity {
         etBirth=v.findViewById(R.id.et_birth);
         iv=v.findViewById(R.id.iv);
 
+        rg.clearCheck();
+
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -138,7 +146,17 @@ public class MyPetActivity extends AppCompatActivity {
                 Upload();
                 ImgUpload();
 
+                INDEX_INFO = new PetInfo[]{
+                        new PetInfo(loadName,loadGender,loadBirth, loadImg)
+                };
 
+                List<PetInfo> list=new ArrayList<PetInfo>();
+                for(int i=0;i<INDEX_INFO.length;i++){
+                    list.add(INDEX_INFO[i]);
+                }
+
+                PetAdapter adapter=new PetAdapter(MyPetActivity.this,0,list);
+                lv.setAdapter(adapter);
             }
         });
 
@@ -201,7 +219,6 @@ public class MyPetActivity extends AppCompatActivity {
                     loadName=p.petName;
                     loadGender=p.petGender;
                     loadBirth=p.petBirth;
-
                 }
             }
 
@@ -220,17 +237,11 @@ public class MyPetActivity extends AppCompatActivity {
         String fileName=sdf.format(new Date())+".png";
 
         StorageReference imgRef=firebaseStorage.getReference("uploads/petImg/"+fileName);
-
         UploadTask task=imgRef.putFile(imgUri);
         task.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        loadImg=uri.toString();
-                    }
-                });
+                loadImg=imgUri;
             }
         });
 
