@@ -13,10 +13,13 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,7 +34,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +46,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -54,7 +60,8 @@ public class MyPetActivity extends AppCompatActivity {
     String name,gender,birth;
     String loadName,loadGender,loadBirth;
     Uri loadImg;
-    PetInfo[] INDEX_INFO;
+    ArrayList<PetInfo> items=new ArrayList<>();
+    PetAdapter adapter;
 
     TextView tvNoitem;
 
@@ -90,6 +97,8 @@ public class MyPetActivity extends AppCompatActivity {
                 requestPermissions(permissions,100);
             }
         }
+        adapter=new PetAdapter(items,this);
+        lv.setAdapter(adapter);
 
     }
 
@@ -144,19 +153,9 @@ public class MyPetActivity extends AppCompatActivity {
                 name=etName.getText().toString();
                 birth=etBirth.getText().toString();
                 Upload();
-                ImgUpload();
 
-                INDEX_INFO = new PetInfo[]{
-                        new PetInfo(loadName,loadGender,loadBirth, loadImg)
-                };
+                // save();
 
-                List<PetInfo> list=new ArrayList<PetInfo>();
-                for(int i=0;i<INDEX_INFO.length;i++){
-                    list.add(INDEX_INFO[i]);
-                }
-
-                PetAdapter adapter=new PetAdapter(MyPetActivity.this,0,list);
-                lv.setAdapter(adapter);
             }
         });
 
@@ -211,15 +210,32 @@ public class MyPetActivity extends AppCompatActivity {
         DatabaseReference petRef=ref.child("pets");
         petRef.push().setValue(pet);
 
-        petRef.addValueEventListener(new ValueEventListener() {
+        petRef.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Pet p=snapshot.getValue(Pet.class);
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Pet p=dataSnapshot.getValue(Pet.class);
+                if (p != null) {
                     loadName=p.petName;
                     loadGender=p.petGender;
                     loadBirth=p.petBirth;
                 }
+
+                ImgUpload();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
             }
 
             @Override
@@ -242,9 +258,24 @@ public class MyPetActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 loadImg=imgUri;
+
+                items.add(new PetInfo(loadName,loadGender,loadBirth,loadImg));
+                adapter.notifyDataSetChanged();
             }
         });
-
     }
+
+
+    public void save(){
+
+        SharedPreferences pref=getSharedPreferences("Data",MODE_PRIVATE);
+        SharedPreferences.Editor editor=pref.edit();
+        editor.putString("Name",loadName);
+        editor.putString("Gender",loadGender);
+        editor.putString("Birth",loadBirth);
+        editor.putString("Img",loadImg.toString());
+        editor.commit();
+    }
+
 
 }

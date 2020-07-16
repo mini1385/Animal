@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -65,34 +67,57 @@ class PetInfo{
     }
 }
 
-public class PetAdapter extends ArrayAdapter<PetInfo> {
-    LayoutInflater inflater;
+public class PetAdapter extends BaseAdapter {
 
-    public PetAdapter(Context context, int resourceID, List<PetInfo> petInfoList) {
-        super(context,resourceID,petInfoList);
-        inflater= (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+    ArrayList<PetInfo> items;
+    Context context;
 
+
+    public PetAdapter(ArrayList<PetInfo> items, Context context) {
+        this.items = items;
+        this.context = context;
     }
 
-    @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        PetInfo petInfo=(PetInfo)getItem(position);
+    public int getCount() { return items.size(); }
+
+    @Override
+    public Object getItem(int position) { return items.get(position); }
+
+    @Override
+    public long getItemId(int position) { return position; }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
 
         if(convertView==null){
-            convertView=inflater.inflate(R.layout.petlist_item,null);
+            LayoutInflater inflater=LayoutInflater.from(context);
+            convertView=inflater.inflate(R.layout.petlist_item,parent,false);
+
+            ViewHolder holder=new ViewHolder(convertView);
+            convertView.setTag(holder);
         }
 
-        CircleImageView cv=convertView.findViewById(R.id.cv);
-        TextView tvName=convertView.findViewById(R.id.tv_name);
-        TextView tvGender=convertView.findViewById(R.id.tv_gender);
-        TextView tvBirth=convertView.findViewById(R.id.tv_birth);
-
-        cv.setImageURI(petInfo.img);
-        tvName.setText(petInfo.name);
-        tvGender.setText(petInfo.gender);
-        tvBirth.setText(petInfo.birth);
+        ViewHolder holder=(ViewHolder) convertView.getTag();
+        holder.cv.setImageURI(items.get(position).getImg());
+        holder.tvName.setText(items.get(position).getName());
+        holder.tvGender.setText(items.get(position).getGender());
+        holder.tvBirth.setText(items.get(position).getBirth());
 
         return convertView;
+    }
+
+    class ViewHolder{
+        CircleImageView cv;
+        TextView tvName;
+        TextView tvGender;
+        TextView tvBirth;
+
+        public ViewHolder(View itemView) {
+            cv=itemView.findViewById(R.id.cv);
+            tvName=itemView.findViewById(R.id.tv_name);
+            tvGender=itemView.findViewById(R.id.tv_gender);
+            tvBirth=itemView.findViewById(R.id.tv_birth);
+        }
     }
 }

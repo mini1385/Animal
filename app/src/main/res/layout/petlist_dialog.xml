@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/iv"
-        android:hint="이름을 입력하세요."
+        android:hint="이름(7자이내)"
         android:textSize="16dp"
         android:inputType="text"
         android:maxLength="7"/>
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/iv"
         android:layout_below="@id/rg"
-        android:hint="생일을 입력하세요."
+        android:hint="생일(0000.00.00)"
         android:textSize="16dp"
         android:inputType="date"
         android:maxLength="10"/>
