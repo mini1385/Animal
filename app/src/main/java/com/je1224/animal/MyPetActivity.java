@@ -155,8 +155,6 @@ public class MyPetActivity extends AppCompatActivity {
                 birth=etBirth.getText().toString();
                 Upload();
 
-                // save();
-
             }
         });
 
@@ -260,22 +258,28 @@ public class MyPetActivity extends AppCompatActivity {
 
                 items.add(new PetInfo(loadName,loadGender,loadBirth,loadImg));
                 adapter.notifyDataSetChanged();
-
             }
         });
     }
 
-
-    public void save(){
-
-        SharedPreferences pref=getSharedPreferences("Data",MODE_PRIVATE);
-        SharedPreferences.Editor editor=pref.edit();
-        editor.putString("Name",loadName);
-        editor.putString("Gender",loadGender);
-        editor.putString("Birth",loadBirth);
-        editor.putString("Img",loadImg.toString());
-        editor.commit();
-    }
-
+//    public void save(){
+//        SharedPreferences pref=getSharedPreferences("Data",MODE_PRIVATE);
+//        SharedPreferences.Editor editor=pref.edit();
+//        editor.putString("Name",loadName);
+//        editor.putString("Gender",loadGender);
+//        editor.putString("Birth",loadBirth);
+//        editor.putString("Img",loadImg.toString());
+//        editor.commit();
+//    }
+//
+//    public void load(){
+//        SharedPreferences pref=getSharedPreferences("Data",MODE_PRIVATE);
+//        String name=pref.getString("Name","empty");
+//        String gender=pref.getString("Gender","empty");
+//        String birth=pref.getString("Birth","empty");
+//        String img=pref.getString("Img","empty");
+//
+//        Uri imgUri=Uri.parse(img);
+//    }
 
 }
