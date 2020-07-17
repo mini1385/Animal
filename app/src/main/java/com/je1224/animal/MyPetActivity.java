@@ -20,6 +20,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -210,17 +211,14 @@ public class MyPetActivity extends AppCompatActivity {
         DatabaseReference petRef=ref.child("pets");
         petRef.push().setValue(pet);
 
-        petRef.addChildEventListener(new ChildEventListener() {
+        ChildEventListener childEventListener=new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Pet p=dataSnapshot.getValue(Pet.class);
-                if (p != null) {
-                    loadName=p.petName;
-                    loadGender=p.petGender;
-                    loadBirth=p.petBirth;
-                }
+                loadName=p.petName;
+                loadGender=p.petGender;
+                loadBirth=p.petBirth;
 
-                ImgUpload();
             }
 
             @Override
@@ -242,15 +240,16 @@ public class MyPetActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
-
+        };
+        petRef.addChildEventListener(childEventListener);
+        ImgUpload();
     }
 
     public void ImgUpload(){
         FirebaseStorage firebaseStorage=FirebaseStorage.getInstance();
 
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmss");
-        String fileName=sdf.format(new Date())+".png";
+        // SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmss");
+        String fileName=name+".png";
 
         StorageReference imgRef=firebaseStorage.getReference("uploads/petImg/"+fileName);
         UploadTask task=imgRef.putFile(imgUri);
@@ -261,6 +260,7 @@ public class MyPetActivity extends AppCompatActivity {
 
                 items.add(new PetInfo(loadName,loadGender,loadBirth,loadImg));
                 adapter.notifyDataSetChanged();
+
             }
         });
     }

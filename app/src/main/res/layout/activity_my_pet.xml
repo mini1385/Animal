@@ -37,14 +37,13 @@
         android:textSize="20sp"
         android:fontFamily="@font/joongnalight"/>
 
-
-
-
     <ListView
         android:id="@+id/lv"
         android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:dividerHeight="8dp"
+        android:divider="#3EFFD3C8"
         android:padding="16dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
