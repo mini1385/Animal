@@ -1,41 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:padding="16dp"
-    android:background="@drawable/home_rl_bg">
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="130dp"
+android:padding="16dp"
+android:background="@drawable/home_rl_bg">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="쇼핑몰 이름"
-        android:textSize="24sp"
-        android:textColor="#FF666666"
-        android:fontFamily="@font/joongnalight" />
+<TextView
+    android:id="@+id/tv_title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="쇼핑몰 이름"
+    android:textSize="24sp"
+    android:textColor="#FF666666"
+    android:fontFamily="@font/joongnalight" />
 
-    <TextView
-        android:id="@+id/tv_contents"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:text="사이트 설명"
-        android:textSize="18sp"
-        android:textColor="#FF666666"
-        android:maxLength="25"
-        android:fontFamily="@font/joongnalight"
-        android:layout_marginLeft="12dp"/>
+<TextView
+    android:id="@+id/tv_contents"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="14dp"
+    android:text="사이트 설명"
+    android:textSize="18sp"
+    android:textColor="#FF666666"
+    android:maxLength="25"
+    android:fontFamily="@font/joongnalight"
+    android:layout_marginLeft="12dp"/>
 
-    <TextView
-        android:id="@+id/tv_url"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="사이트 주소"
-        android:textSize="18sp"
-        android:textColor="#FF666666"
-        android:fontFamily="@font/joongnalight"
-        android:layout_marginLeft="12dp"/>
+<TextView
+    android:id="@+id/tv_url"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:text="사이트 주소"
+    android:textSize="16sp"
+    android:textColor="#FF666666"
+    android:layout_marginLeft="12dp"
+    android:autoLink="web"
+    android:linksClickable="true"
+    android:textColorLink="#FF0000FF"/>
 
 </LinearLayout>
