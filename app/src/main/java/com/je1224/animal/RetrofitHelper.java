@@ -14,4 +14,13 @@ public class RetrofitHelper {
         return retrofit;
     }
 
+    public static Retrofit getRetrofitInstance_kakao(){
+        Retrofit.Builder builder=new Retrofit.Builder();
+        builder.baseUrl("https://dapi.kakao.com/");
+        builder.addConverterFactory(GsonConverterFactory.create());
+        Retrofit retrofit_kakao=builder.build();
+
+        return retrofit_kakao;
+    }
+
 }

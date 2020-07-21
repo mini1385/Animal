@@ -46,6 +46,7 @@ public class Fragment_shop extends Fragment {
 
                         shops.add(new ShopInfo(loadTitle,loadContents,loadUrl));
                         adapter.notifyDataSetChanged();
+
                     }
                 }
             }

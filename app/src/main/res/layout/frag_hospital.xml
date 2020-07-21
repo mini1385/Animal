@@ -29,14 +29,16 @@
             android:layout_alignBottom="@id/sub"
             android:clickable="true"
             android:background="@drawable/home_rl_bg"
-            android:padding="3dp"/>
+            android:padding="3dp"
+            android:contextClickable="true" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/map_view"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_below="@id/sub"
         android:background="@drawable/home_rl_bg">
     </RelativeLayout>
@@ -82,7 +84,8 @@
     <RelativeLayout
         android:id="@+id/rl_info"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
         android:layout_alignParentBottom="true"
         android:background="@drawable/home_rl_bg"
         android:padding="16dp">
@@ -100,7 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/title"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:text= "주소 : "
             android:textSize="18sp"
             android:fontFamily="@font/joongnalight"/>
@@ -117,30 +120,10 @@
             android:fontFamily="@font/joongnalight"/>
 
         <TextView
-            android:id="@+id/ti"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/aa"
-            android:layout_marginTop="6dp"
-            android:text= "영업시간 : "
-            android:textSize="18sp"
-            android:fontFamily="@font/joongnalight"/>
-
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/aa"
-            android:layout_toRightOf="@id/ti"
-            android:layout_marginTop="6dp"
-            android:textSize="18sp"
-            android:fontFamily="@font/joongnalight"/>
-
-        <TextView
             android:id="@+id/te"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ti"
+            android:layout_below="@id/aa"
             android:layout_marginTop="6dp"
             android:text= "전화번호 : "
             android:textSize="18sp"
@@ -150,10 +133,30 @@
             android:id="@+id/telephone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ti"
+            android:layout_below="@id/aa"
             android:layout_toRightOf="@id/te"
             android:layout_marginTop="6dp"
-            android:text= "X"
+            android:textSize="18sp"
+            android:fontFamily="@font/joongnalight"/>
+
+        <TextView
+            android:id="@+id/ss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/te"
+            android:layout_marginTop="6dp"
+            android:text= "사이트 : "
+            android:textSize="18sp"
+            android:fontFamily="@font/joongnalight"/>
+
+        <TextView
+            android:id="@+id/site"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/te"
+            android:layout_toRightOf="@id/ss"
+            android:layout_marginTop="6dp"
+            android:text="X"
             android:textSize="18sp"
             android:fontFamily="@font/joongnalight"/>
 
