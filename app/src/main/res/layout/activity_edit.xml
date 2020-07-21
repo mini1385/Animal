@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".EditActivity"
+    android:background="#3EFFD3C8">
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:src="@drawable/ic_insert_photo_gray_24dp"
+        android:background="#FFFFFFFF"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_below="@id/iv"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@color/buttoncolor"
+            android:text="사진 삭제"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/joongnamedium"
+            android:onClick="photoDelete"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@color/buttoncolor"
+            android:text="사진 선택"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/joongnamedium"
+            android:onClick="photoAdd"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:layout_marginTop="8dp"
+        android:background="#FFFFFFFF"
+        android:padding="8dp"
+        android:hint="내용을 입력해주세요."
+        android:textSize="20sp"
+        android:fontFamily="@font/joongnalight"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:maxLines="3" />
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@color/buttoncolor"
+        android:text="작성 완료"
+        android:textSize="16sp"
+        android:textColor="@color/colorAccent"
+        android:fontFamily="@font/joongnamedium"
+        android:onClick="editClear"/>
+
+
+
+</LinearLayout>

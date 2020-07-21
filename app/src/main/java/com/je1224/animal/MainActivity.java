@@ -16,6 +16,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -164,13 +165,20 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_my:
                 Intent intent1=new Intent(MainActivity.this,MyPageActivity.class);
                 startActivity(intent1);
+                overridePendingTransition(3, 0);
                 break;
             case R.id.menu_pet:
                 Intent intent2=new Intent(MainActivity.this,MyPetActivity.class);
                 startActivity(intent2);
+                overridePendingTransition(3, 0);
                 break;
             case R.id.menu_review:
-                Toast.makeText(this, "review", Toast.LENGTH_SHORT).show();
+                final String appPackageName = getPackageName();
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);

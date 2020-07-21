@@ -2,22 +2,27 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
-    android:layout_height="200dp"
-    android:background="@drawable/home_rl_bg"
+    android:layout_height="150dp"
     android:padding="16dp">
 
     <ImageView
         android:id="@+id/iv"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:src="@drawable/ic_insert_photo_gray_24dp"/>
+        android:padding="10dp"
+        android:src="@drawable/ic_add_a_photo_gray_24dp"
+        android:clickable="true"
+        android:onClick="dialog_photo"/>
 
     <EditText
         android:id="@+id/et_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/iv"
-        android:hint="이름을 입력하세요."/>
+        android:hint="이름(7자이내)"
+        android:textSize="16dp"
+        android:inputType="text"
+        android:maxLength="7"/>
 
     <RadioGroup
         android:id="@+id/rg"
@@ -33,14 +38,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="수컷"
-            android:checked="true"/>
+            android:checked="true"
+            android:buttonTint="@color/colorPrimaryDark"/>
 
         <RadioButton
             android:id="@+id/rb_g"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="암컷"/>
+            android:text="암컷"
+            android:buttonTint="@color/colorPrimaryDark"/>
 
     </RadioGroup>
 
@@ -50,33 +57,9 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/iv"
         android:layout_below="@id/rg"
-        android:hint="생일을 입력하세요."/>
-
-    <Button
-        android:id="@+id/btn_ok"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:text="확인"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="16sp"
-        android:fontFamily="@font/cookierun"
-        android:background="@color/colorAccent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:stateListAnimator="@null"/>
-
-    <Button
-        android:id="@+id/btn_del"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:text="취소"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="16sp"
-        android:fontFamily="@font/cookierun"
-        android:background="@color/colorAccent"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/btn_ok"
-        android:stateListAnimator="@null"/>
-
+        android:hint="생일(0000.00.00)"
+        android:textSize="16dp"
+        android:inputType="date"
+        android:maxLength="10"/>
 
 </RelativeLayout>

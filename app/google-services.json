@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "252084790908-jqgt6om97vdihfrutlnk7l52fv9ogejc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.je1224.animal",
+            "certificate_hash": "71cce7b2c1f2b606b156c65c391acaabca872f6d"
+          }
+        },
+        {
           "client_id": "252084790908-6jas4q4qoj1i6plrjua13k7uiqvdebh7.apps.googleusercontent.com",
           "client_type": 3
         }
