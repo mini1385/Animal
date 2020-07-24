@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,6 +20,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.content.CursorLoader;
 
 import com.bumptech.glide.Glide;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 
 public class EditActivity extends AppCompatActivity {
@@ -92,7 +105,39 @@ public class EditActivity extends AppCompatActivity {
     }
 
     public void editClear(View view) {
+        String msg=et.getText().toString();
 
+        Retrofit retrofit=RetrofitHelper.getRetrofitInstance();
+        RetrofitService retrofitService=retrofit.create(RetrofitService.class);
+
+        Map<String, String> dataPart=new HashMap<>();
+        dataPart.put("msg",msg);
+
+        MultipartBody.Part filePart=null;
+        if(imgPath!=null){
+            File file=new File(imgPath);
+            RequestBody requestBody=RequestBody.create(MediaType.parse("image/*"),file);
+            filePart=MultipartBody.Part.createFormData("img",file.getName(),requestBody);
+        }
+
+        Call<String> call=retrofitService.postData(dataPart,filePart);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful()){
+                    String s=response.body();
+                    Toast.makeText(EditActivity.this, ""+s, Toast.LENGTH_SHORT).show();
+
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.i("Tag",t+"");
+            }
+        });
     }
+
 
 }

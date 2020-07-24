@@ -1,26 +1,28 @@
 package com.je1224.animal;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RetrofitHelper {
 
     public static Retrofit getRetrofitInstance(){
-        Retrofit.Builder builder=new Retrofit.Builder();
-        builder.baseUrl("http://je1224.dothome.co.kr/");
-        builder.addConverterFactory(GsonConverterFactory.create());
-        Retrofit retrofit=builder.build();
+        Gson gson=new GsonBuilder().setLenient().create();
 
-        return retrofit;
+        Retrofit.Builder builder=new Retrofit.Builder();
+        builder.baseUrl("http://je1224.dothome.co.kr");
+        builder.addConverterFactory(GsonConverterFactory.create(gson));
+        return builder.build();
     }
 
-    public static Retrofit getRetrofitInstance_kakao(){
+    public static Retrofit getRetrofitInstance2(){
         Retrofit.Builder builder=new Retrofit.Builder();
-        builder.baseUrl("https://dapi.kakao.com/");
-        builder.addConverterFactory(GsonConverterFactory.create());
-        Retrofit retrofit_kakao=builder.build();
-
-        return retrofit_kakao;
+        builder.baseUrl("http://je1224.dothome.co.kr");
+        builder.addConverterFactory(ScalarsConverterFactory.create());
+        return builder.build();
     }
 
 }
