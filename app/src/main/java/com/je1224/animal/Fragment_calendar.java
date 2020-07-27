@@ -48,6 +48,8 @@ public class Fragment_calendar extends Fragment {
 
         setRecycler();
 
+
+
         return view;
     }
 
@@ -106,5 +108,7 @@ public class Fragment_calendar extends Fragment {
 
         mCalendarList = calendarList;
     }
+
+
 
 }

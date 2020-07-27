@@ -5,6 +5,7 @@ import java.util.Map;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -19,9 +20,9 @@ public interface RetrofitService {
 
     @Multipart
     @POST("/WithAnimal/insertDB.php")
-    Call<String> postData(@PartMap Map<String, String> dataPart, @Part MultipartBody.Part filePart);
+    Call<String> postPhoto(@PartMap Map<String, String> dataPart, @Part MultipartBody.Part filePart);
 
     @GET("/WithAnimal/loadDB.php")
-    Call<ArrayList<EditItem>> loadData();
+    Call<ArrayList<EditItem>> loadPhoto();
 
 }

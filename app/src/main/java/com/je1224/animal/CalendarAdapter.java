@@ -1,5 +1,7 @@
 package com.je1224.animal;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +67,7 @@ public class CalendarAdapter extends RecyclerView.Adapter {
             return new DayViewHolder(inflater.inflate(R.layout.item_day, parent, false));
 
         }
+
     }
 
     @Override
@@ -148,6 +151,7 @@ public class CalendarAdapter extends RecyclerView.Adapter {
 
     private class DayViewHolder extends RecyclerView.ViewHolder {
 
+        Context context;
         TextView itemDay;
 
         public DayViewHolder(@NonNull View itemView) {
@@ -155,10 +159,18 @@ public class CalendarAdapter extends RecyclerView.Adapter {
 
             initView(itemView);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context=v.getContext();
+                    Intent intent=new Intent(context,TaskActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+
         }
 
         public void initView(View v){
-
             itemDay = v.findViewById(R.id.item_day);
 
         }
@@ -167,5 +179,7 @@ public class CalendarAdapter extends RecyclerView.Adapter {
             String day = ((Day)model).getDay();
             itemDay.setText(day);
         };
+
+
     }
 }

@@ -80,6 +80,8 @@ public class Fragment_hospital extends Fragment {
             }
         });
 
+
+
         return view;
     }
 
@@ -160,6 +162,8 @@ public class Fragment_hospital extends Fragment {
         }
 
     }
+
+
 
     @Override
     public void onDestroy() {

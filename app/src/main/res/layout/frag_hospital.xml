@@ -94,7 +94,7 @@
              android:id="@+id/title"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:text="OO 동물병원"
+             android:text="상호명"
              android:textSize="20sp"
              android:fontFamily="@font/joongnamedium"/>
 
@@ -156,7 +156,7 @@
             android:layout_below="@id/te"
             android:layout_toRightOf="@id/ss"
             android:layout_marginTop="6dp"
-            android:text="X"
+            android:text=""
             android:textSize="18sp"
             android:fontFamily="@font/joongnalight"/>
 

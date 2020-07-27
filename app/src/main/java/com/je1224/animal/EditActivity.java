@@ -22,6 +22,7 @@ import androidx.loader.content.CursorLoader;
 import com.bumptech.glide.Glide;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -107,10 +108,10 @@ public class EditActivity extends AppCompatActivity {
     public void editClear(View view) {
         String msg=et.getText().toString();
 
-        Retrofit retrofit=RetrofitHelper.getRetrofitInstance();
+        Retrofit retrofit=RetrofitHelper.getRetrofitInstance2();
         RetrofitService retrofitService=retrofit.create(RetrofitService.class);
 
-        Map<String, String> dataPart=new HashMap<>();
+        Map<String,String> dataPart=new HashMap<>();
         dataPart.put("msg",msg);
 
         MultipartBody.Part filePart=null;
@@ -120,13 +121,13 @@ public class EditActivity extends AppCompatActivity {
             filePart=MultipartBody.Part.createFormData("img",file.getName(),requestBody);
         }
 
-        Call<String> call=retrofitService.postData(dataPart,filePart);
+        Call<String> call=retrofitService.postPhoto(dataPart,filePart);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful()){
                     String s=response.body();
-                    Toast.makeText(EditActivity.this, ""+s, Toast.LENGTH_SHORT).show();
+                    Log.i("STag",s+"");
 
                     finish();
                 }
@@ -134,10 +135,9 @@ public class EditActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Log.i("Tag",t+"");
+                Log.i("FTag",t+"");
             }
         });
     }
-
 
 }

@@ -10,11 +10,9 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class RetrofitHelper {
 
     public static Retrofit getRetrofitInstance(){
-        Gson gson=new GsonBuilder().setLenient().create();
-
         Retrofit.Builder builder=new Retrofit.Builder();
         builder.baseUrl("http://je1224.dothome.co.kr");
-        builder.addConverterFactory(GsonConverterFactory.create(gson));
+        builder.addConverterFactory(GsonConverterFactory.create());
         return builder.build();
     }
 

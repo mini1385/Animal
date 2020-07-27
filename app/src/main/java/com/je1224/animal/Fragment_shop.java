@@ -30,8 +30,19 @@ public class Fragment_shop extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.frag_shop,container,false);
 
+        initDataset();
+
         lv=view.findViewById(R.id.lv);
 
+        adapter=new ShopAdapter(shops,getActivity());
+        lv.setAdapter(adapter);
+
+        return view;
+    }
+
+
+    private void initDataset(){
+        shops.clear();
         RetrofitService retrofitService=RetrofitHelper.getRetrofitInstance().create(RetrofitService.class);
         Call<ArrayList<ShopInfo>> call=retrofitService.getShopInfo();
         call.enqueue((new Callback<ArrayList<ShopInfo>>() {
@@ -56,10 +67,5 @@ public class Fragment_shop extends Fragment {
 
             }
         }));
-
-        adapter=new ShopAdapter(shops,getActivity());
-        lv.setAdapter(adapter);
-
-        return view;
     }
 }

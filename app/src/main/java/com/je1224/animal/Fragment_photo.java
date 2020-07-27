@@ -45,6 +45,9 @@ public class Fragment_photo extends Fragment {
         GridLayoutManager gridLayoutManager=new GridLayoutManager(context,2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
+        RecyclerDecoration spaceDecoration = new RecyclerDecoration(2,16,true);
+        recyclerView.addItemDecoration(spaceDecoration);
+
         fb=view.findViewById(R.id.fb);
 
         fb.setOnClickListener(new View.OnClickListener() {
@@ -68,18 +71,17 @@ public class Fragment_photo extends Fragment {
     void loadData(){
         Retrofit retrofit=RetrofitHelper.getRetrofitInstance();
         RetrofitService retrofitService=retrofit.create(RetrofitService.class);
-        Call<ArrayList<EditItem>> call=retrofitService.loadData();
+        Call<ArrayList<EditItem>> call=retrofitService.loadPhoto();
         call.enqueue(new Callback<ArrayList<EditItem>>() {
             @Override
             public void onResponse(Call<ArrayList<EditItem>> call, Response<ArrayList<EditItem>> response) {
-                if(response.isSuccessful()){
-                    ArrayList<EditItem> items=response.body();
-                    editItems.clear();
+                ArrayList<EditItem> items=response.body();
+                editItems.clear();
+                adapter.notifyDataSetChanged();
 
-                    for(EditItem item : items){
-                        editItems.add(0,item);
-                        adapter.notifyItemInserted(0);
-                    }
+                for(EditItem item:items){
+                    editItems.add(0,item);
+                    adapter.notifyItemInserted(0);
                 }
             }
 
