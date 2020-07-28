@@ -14,4 +14,9 @@
         <item name="colorAccent">@color/buttoncolor</item>
     </style>
 
+    <style name="activity_dialog" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/dialogbg</item>
+    </style>
+
 </resources>

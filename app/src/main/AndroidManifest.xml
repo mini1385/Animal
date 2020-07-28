@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".TaskActivity" />
+        <activity android:name=".TaskActivity" android:theme="@style/activity_dialog"/>
         <activity android:name=".MyPetActivity" />
         <activity android:name=".MyPageActivity" />
         <activity android:name=".LoginActivity" />

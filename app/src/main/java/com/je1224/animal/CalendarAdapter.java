@@ -101,6 +101,8 @@ public class CalendarAdapter extends RecyclerView.Adapter {
             dvh.bind(model);
         }
 
+
+
     }
 
     @Override
@@ -130,7 +132,6 @@ public class CalendarAdapter extends RecyclerView.Adapter {
             itemHeaderTitle.setText(header);
         };
     }
-
 
     private class EmptyViewHolder extends RecyclerView.ViewHolder {
 
@@ -163,7 +164,10 @@ public class CalendarAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     context=v.getContext();
+
                     Intent intent=new Intent(context,TaskActivity.class);
+                    intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    intent.putExtra("day",itemDay.getText());
                     context.startActivity(intent);
                 }
             });
@@ -180,6 +184,6 @@ public class CalendarAdapter extends RecyclerView.Adapter {
             itemDay.setText(day);
         };
 
-
     }
+
 }
