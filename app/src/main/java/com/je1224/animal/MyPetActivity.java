@@ -246,7 +246,6 @@ public class MyPetActivity extends AppCompatActivity {
     public void ImgUpload(){
         FirebaseStorage firebaseStorage=FirebaseStorage.getInstance();
 
-        // SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmss");
         String fileName=name+".png";
 
         StorageReference imgRef=firebaseStorage.getReference("uploads/petImg/"+fileName);
@@ -261,6 +260,8 @@ public class MyPetActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
 //    public void save(){
 //        SharedPreferences pref=getSharedPreferences("Data",MODE_PRIVATE);
@@ -281,6 +282,17 @@ public class MyPetActivity extends AppCompatActivity {
 //
 //        Uri imgUri=Uri.parse(img);
 //
+//        tvName.setText(name);
+//        tvGender.setText(gender);
+//        tvBirth.setText(birth);
+//        cv.setImageURI(imgUri);
+//
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        load();
 //    }
 
 }

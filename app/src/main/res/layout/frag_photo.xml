@@ -16,12 +16,19 @@
         android:textColor="@color/colorPrimaryDark"
         android:layout_marginBottom="10dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/photo_rv"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        android:layout_below="@id/title" />
+        android:layout_below="@id/title">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/photo_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fb"
