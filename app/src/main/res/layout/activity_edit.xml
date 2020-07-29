@@ -78,6 +78,4 @@
         android:fontFamily="@font/joongnamedium"
         android:onClick="editClear"/>
 
-
-
 </LinearLayout>

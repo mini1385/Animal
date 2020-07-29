@@ -22,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
@@ -79,7 +80,7 @@ public class Fragment_hospital extends Fragment {
                 changeMyLocation();
             }
         });
-
+        
         return view;
     }
 
@@ -160,6 +161,8 @@ public class Fragment_hospital extends Fragment {
         }
 
     }
+
+
 
     @Override
     public void onDestroy() {

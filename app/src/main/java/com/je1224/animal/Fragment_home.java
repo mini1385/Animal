@@ -30,6 +30,7 @@ public class Fragment_home extends Fragment {
     ArrayList<Item> thumbnails2=new ArrayList<>();
     ArrayList<Item> thumbnails3=new ArrayList<>();
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,21 +38,12 @@ public class Fragment_home extends Fragment {
         context=container.getContext();
 
         View view=inflater.inflate(R.layout.frag_home,container,false);
+
+        initDataset();
+
         recyclerView1=view.findViewById(R.id.recycler1);
         recyclerView2=view.findViewById(R.id.recycler2);
         recyclerView3=view.findViewById(R.id.recycler3);
-
-        thumbnails1.add(new Item("https://img.youtube.com/vi/G2H5fEZyx_g/mqdefault.jpg",1));
-        thumbnails1.add(new Item("https://img.youtube.com/vi/WWQx9HBI7_o/mqdefault.jpg",2));
-        thumbnails1.add(new Item("https://img.youtube.com/vi/v_MkYvTTl7A/mqdefault.jpg",3));
-
-        thumbnails2.add(new Item("https://img.youtube.com/vi/j5qOfxXdDf8/mqdefault.jpg",4));
-        thumbnails2.add(new Item("https://img.youtube.com/vi/OdC2_-uTKuQ/mqdefault.jpg",5));
-        thumbnails2.add(new Item("https://img.youtube.com/vi/d62uZHVToRU/mqdefault.jpg",6));
-
-        thumbnails3.add(new Item("https://img.youtube.com/vi/Ot_ipiWPM6E/mqdefault.jpg",7));
-        thumbnails3.add(new Item("https://img.youtube.com/vi/kT7JEO0anLA/mqdefault.jpg",8));
-        thumbnails3.add(new Item("https://img.youtube.com/vi/7gW_Jd0O2BM/mqdefault.jpg",9));
 
         adapter1=new HomeAdapter(context,thumbnails1);
         recyclerView1.setAdapter(adapter1);
@@ -65,4 +57,22 @@ public class Fragment_home extends Fragment {
         return view;
     }
 
+    private void initDataset(){
+        thumbnails1.clear();
+        thumbnails2.clear();
+        thumbnails3.clear();
+
+        thumbnails1.add(new Item("https://img.youtube.com/vi/G2H5fEZyx_g/mqdefault.jpg",1));
+        thumbnails1.add(new Item("https://img.youtube.com/vi/WWQx9HBI7_o/mqdefault.jpg",2));
+        thumbnails1.add(new Item("https://img.youtube.com/vi/v_MkYvTTl7A/mqdefault.jpg",3));
+
+        thumbnails2.add(new Item("https://img.youtube.com/vi/j5qOfxXdDf8/mqdefault.jpg",4));
+        thumbnails2.add(new Item("https://img.youtube.com/vi/OdC2_-uTKuQ/mqdefault.jpg",5));
+        thumbnails2.add(new Item("https://img.youtube.com/vi/d62uZHVToRU/mqdefault.jpg",6));
+
+        thumbnails3.add(new Item("https://img.youtube.com/vi/Ot_ipiWPM6E/mqdefault.jpg",7));
+        thumbnails3.add(new Item("https://img.youtube.com/vi/kT7JEO0anLA/mqdefault.jpg",8));
+        thumbnails3.add(new Item("https://img.youtube.com/vi/7gW_Jd0O2BM/mqdefault.jpg",9));
+
+    }
 }

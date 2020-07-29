@@ -5,10 +5,21 @@
     android:padding="16dp"
     android:background="#3EFFD3C8">
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="반려동물 전문 쇼핑몰 리스트"
+        android:textSize="20sp"
+        android:fontFamily="@font/cookierun"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginBottom="10dp"/>
+
     <ListView
         android:id="@+id/lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/title"
         android:dividerHeight="8dp"
         android:divider="#3EFFD3C8" />
 

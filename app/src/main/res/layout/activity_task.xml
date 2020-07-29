@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="250dp"
+    android:layout_height="200dp"
+    tools:context=".TaskActivity"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_gravity="center"
+    android:background="@drawable/home_rl_bg">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_centerVertical="true"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_bg"
+            android:layout_alignParentRight="true"
+            android:padding="4dp"
+            android:clickable="true"
+            android:onClick="datePicker">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="날짜 지정"
+                android:layout_below="@id/iv"
+                android:textSize="14sp"
+                android:fontFamily="@font/joongnalight"/>
+
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_date_range_gray_24dp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_msg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:padding="8dp"
+        android:inputType="textMultiLine"
+        android:hint="일정 내용 작성(최대 8자)"
+        android:fontFamily="@font/joongnalight"
+        android:gravity="start"
+        android:background="@drawable/bottom_bg"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Switch
+            android:id="@+id/alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="4dp"
+            android:fontFamily="@font/joongnalight"
+            android:textSize="14sp"
+            android:text="알림 설정 On/Off "
+            android:track="@drawable/switch_track_selector" />
+
+        <Button
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:text="등 록"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/joongnamedium"
+            android:onClick="addDate"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

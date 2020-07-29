@@ -280,6 +280,7 @@ public class MyPetActivity extends AppCompatActivity {
 //        String img=pref.getString("Img","empty");
 //
 //        Uri imgUri=Uri.parse(img);
+//
 //    }
 
 }

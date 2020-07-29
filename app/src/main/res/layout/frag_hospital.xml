@@ -94,9 +94,10 @@
              android:id="@+id/title"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:text="OO 동물병원"
+             android:text="상호명"
              android:textSize="20sp"
-             android:fontFamily="@font/joongnamedium"/>
+             android:fontFamily="@font/joongnamedium"
+             android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/aa"
@@ -106,7 +107,8 @@
             android:layout_marginTop="10dp"
             android:text= "주소 : "
             android:textSize="18sp"
-            android:fontFamily="@font/joongnalight"/>
+            android:fontFamily="@font/joongnalight"
+            android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/address"
@@ -117,7 +119,7 @@
             android:layout_marginTop="8dp"
             android:text= ""
             android:textSize="18sp"
-            android:fontFamily="@font/joongnalight"/>
+            android:fontFamily="@font/joongnalight" />
 
         <TextView
             android:id="@+id/te"
@@ -127,7 +129,8 @@
             android:layout_marginTop="6dp"
             android:text= "전화번호 : "
             android:textSize="18sp"
-            android:fontFamily="@font/joongnalight"/>
+            android:fontFamily="@font/joongnalight"
+            android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/telephone"
@@ -147,7 +150,8 @@
             android:layout_marginTop="6dp"
             android:text= "사이트 : "
             android:textSize="18sp"
-            android:fontFamily="@font/joongnalight"/>
+            android:fontFamily="@font/joongnalight"
+            android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/site"
@@ -156,7 +160,7 @@
             android:layout_below="@id/te"
             android:layout_toRightOf="@id/ss"
             android:layout_marginTop="6dp"
-            android:text="X"
+            android:text=""
             android:textSize="18sp"
             android:fontFamily="@font/joongnalight"/>
 
