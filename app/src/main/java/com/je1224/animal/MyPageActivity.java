@@ -1,11 +1,14 @@
 package com.je1224.animal;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +21,7 @@ import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.api.UserApi;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
 import com.kakao.usermgmt.callback.MeV2ResponseCallback;
+import com.kakao.usermgmt.callback.UnLinkResponseCallback;
 import com.kakao.usermgmt.response.MeV2Response;
 import com.kakao.usermgmt.response.model.Profile;
 import com.kakao.usermgmt.response.model.User;
@@ -47,32 +51,13 @@ public class MyPageActivity extends AppCompatActivity {
         actionBar.setTitle("");
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        if(K.userAccount!=null){
+            btn1.setVisibility(View.VISIBLE);
+            btn2.setVisibility(View.VISIBLE);
 
-        UserManagement.getInstance().me(new MeV2ResponseCallback() {
-
-            @Override
-            public void onSessionClosed(ErrorResult errorResult) {
-
-            }
-
-            @Override
-            public void onSuccess(MeV2Response result) {
-                UserAccount userAccount=result.getKakaoAccount();
-
-                if(userAccount!=null) {
-                    btn1.setVisibility(View.VISIBLE);
-                    btn2.setVisibility(View.VISIBLE);
-                }
-
-                tv.setText(userAccount.getEmail());
-
-                Profile profile=userAccount.getProfile();
-                if(profile==null) return;
-
-                String imgUrl=profile.getProfileImageUrl();
-                Glide.with(MyPageActivity.this).load(imgUrl).into(cv);
-            }
-        });
+            tv.setText(K.email);
+            Glide.with(MyPageActivity.this).load(K.profileUrl).into(cv);
+        }
 
     }
 
@@ -101,5 +86,47 @@ public class MyPageActivity extends AppCompatActivity {
     }
 
     public void dataDelete(View view) {
+        AlertDialog.Builder builder=new AlertDialog.Builder(this,R.style.dialog_theme);
+        LayoutInflater inflater=this.getLayoutInflater();
+        builder.setTitle("알림");
+        View v=inflater.inflate(R.layout.deletedialog,null);
+        builder.setView(v);
+        builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                UserManagement.getInstance().requestUnlink(new UnLinkResponseCallback() {
+//                    @Override
+//                    public void onSessionClosed(ErrorResult errorResult) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onSuccess(Long result) {
+                        Toast.makeText(MyPageActivity.this, "데이터가 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                        UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
+                            @Override
+                            public void onCompleteLogout() {
+
+                            }
+                        });
+                        Toast.makeText(MyPageActivity.this, "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(MyPageActivity.this,MainActivity.class);
+                        startActivity(intent);
+                        finish();
+
+//                    }
+//                });
+            }
+        });
+        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(MyPageActivity.this, "취소하였습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AlertDialog dialog=builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
     }
 }

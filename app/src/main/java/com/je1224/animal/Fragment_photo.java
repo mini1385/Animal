@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -30,6 +31,8 @@ public class Fragment_photo extends Fragment {
     EditAdapter adapter;
     ArrayList<EditItem> editItems=new ArrayList<>();
     FloatingActionButton fb;
+
+    SwipeRefreshLayout refreshLayout;
 
     @Nullable
     @Override
@@ -55,6 +58,16 @@ public class Fragment_photo extends Fragment {
             public void onClick(View v) {
                 Intent intent=new Intent(context,EditActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        refreshLayout=view.findViewById(R.id.swipe);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadData();
+
+                refreshLayout.setRefreshing(false);
             }
         });
 

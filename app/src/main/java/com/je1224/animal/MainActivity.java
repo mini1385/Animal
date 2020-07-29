@@ -30,6 +30,15 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.kakao.auth.ISessionCallback;
+import com.kakao.auth.Session;
+import com.kakao.network.ErrorResult;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.MeV2ResponseCallback;
+import com.kakao.usermgmt.response.MeV2Response;
+import com.kakao.usermgmt.response.model.Profile;
+import com.kakao.usermgmt.response.model.UserAccount;
+import com.kakao.util.exception.KakaoException;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -83,11 +92,19 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_home:
                         tran.replace(R.id.container,fragments[0]);
                         break;
-                    case R.id.menu_calender:
-                        tran.replace(R.id.container,fragments[1]);
-                        break;
                     case R.id.menu_photo:
-                        tran.replace(R.id.container,fragments[2]);
+                        if(K.userAccount!=null){
+                            tran.replace(R.id.container,fragments[2]);
+                        } else{
+                            Toast.makeText(MainActivity.this, "로그인 후 이용가능", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    case R.id.menu_calender:
+                        if(K.userAccount!=null) {
+                            tran.replace(R.id.container, fragments[1]);
+                        } else{
+                            Toast.makeText(MainActivity.this, "로그인 후 이용가능", Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case R.id.menu_hospital:
                         tran.replace(R.id.container,fragments[3]);
@@ -109,7 +126,22 @@ public class MainActivity extends AppCompatActivity {
 
 //        AdRequest adRequest=new AdRequest.Builder().build();
 //        adView.loadAd(adRequest);
+
+        Session.getCurrentSession().addCallback(sessionCallback);
     }
+
+    ISessionCallback sessionCallback=new ISessionCallback() {
+        @Override
+        public void onSessionOpened() {
+
+        }
+
+        @Override
+        public void onSessionOpenFailed(KakaoException exception) {
+
+        }
+    };
+
 
 
     @Override
